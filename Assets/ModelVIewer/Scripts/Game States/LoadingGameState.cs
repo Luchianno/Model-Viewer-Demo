@@ -33,8 +33,8 @@ public class LoadingGameState : GameStateWithView
         base.OnEnter(args);
     }
 
-    public override void Update()
-    {
-        // (uiView as ProgressMessageView).UpdateView(loader.Progress);
-    }
+    // public override void Update()
+    // {
+    //     // (uiView as ProgressMessageView).UpdateView(loader.Progress);
+    // }
 }

@@ -35,6 +35,15 @@ public class WireframeRenderer : MonoBehaviour
         Validate();
     }
 
+    void Update()
+    {
+        if (wireframeRenderer == null)
+            return;
+        UpdateWireframeRendererMaterial();
+        UpdateLineColor();
+        UpdateShaded();
+    }
+
     public void SetMeshDirty()
     {
         processedMesh = GetProcessedMesh(GetOriginalMesh());
