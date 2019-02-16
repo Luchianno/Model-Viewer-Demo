@@ -75,16 +75,19 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             Pinch = currentDistance / startDistance;
 
             //black magic
-            var angleDelta = Vector2.Angle(
+            var angleDelta = Vector2.SignedAngle(
                                     oldPos - currentPos.Last.Previous.Value.Pos,
                                     currentPos.Last.Value.Pos - currentPos.Last.Previous.Value.Pos);
+
+
 
             OnPinchChanged.Invoke(new PinchInfo()
             {
                 Amount = Pinch,
                 Delta = Pinch - oldPinch,
                 Angle = 0f,
-                AngleDelta = angleDelta // Angdelta Merkel https://a.wattpad.com/cover/167060355-288-k824453.jpg
+                AngleDelta = angleDelta, // Angdelta Merkel https://a.wattpad.com/cover/167060355-288-k824453.jpg
+                CenterDelta = eventData.delta / 2
             });
         }
 
@@ -121,6 +124,7 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         public float Delta;
         public float Angle;
         public float AngleDelta;
+        public Vector2 CenterDelta;
     }
 
     public struct SwipeInfo
