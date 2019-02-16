@@ -45,8 +45,7 @@ public class PreviewTransformController : MonoBehaviour
         loader.LoadedObject.transform.localScale = Vector3.one * clampedZoom;
 
         loader.LoadedObject.transform.Rotate(0, 0, pinch.AngleDelta, Space.World);
-        loader.LoadedObject.transform.Translate(pinch.CenterDelta.x / 5, pinch.CenterDelta.y / 5, 0, Space.Self);
-
+        loader.LoadedObject.transform.Translate(pinch.CenterDelta.x / 10, pinch.CenterDelta.y / 10, 0, Space.Self);
     }
 
     void PinchEnded()
