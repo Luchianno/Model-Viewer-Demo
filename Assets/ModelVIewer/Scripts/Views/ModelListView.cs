@@ -16,11 +16,6 @@ public class ModelListView : BasicView
 
     public void UpdateView(IEnumerable<ModelEntry> items)
     {
-        // while (listParent.childCount != 0)
-        // {
-        //     Destroy(listParent.GetChild(listParent.childCount - 1).gameObject);
-        // }
-
         foreach (Transform item in listParent)
         {
             Destroy(item.gameObject);
@@ -29,8 +24,6 @@ public class ModelListView : BasicView
         foreach (var item in items)
         {
             var temp = factory.Create();
-            // temp.transform.parent = listParent;
-            // temp.transform.localScale = Vector3.one;
             var view = temp.GetComponent<ModelListItemView>();
             view.UpdateView(item);
             view.OnClick.AddListener(() => OnItemSelected.Invoke(item));

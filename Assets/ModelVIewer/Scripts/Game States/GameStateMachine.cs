@@ -14,7 +14,7 @@ public class GameStateMachine : IInitializable, ITickable
 
     public void Initialize()
     {
-        Debug.Log("Init SM");
+        // Debug.Log("Init SM");
         this.ChangeState<ListGameState>(); // default state
     }
 

@@ -18,9 +18,6 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public UnityEvent OnPinchEnded;
     public UnityEvent OnSwipeEnded;
 
-    // public float MinPinch = 0.1f;
-    // public float MaxPinch = 2f;
-
     public List<TouchInfo> pressStart = new List<TouchInfo>();
     public LinkedList<TouchInfo> currentPos = new LinkedList<TouchInfo>();
 
@@ -40,7 +37,6 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (pressStart.Count > 1)
         {
             startDistance = (pressStart[pressStart.Count - 1].Pos - pressStart[pressStart.Count - 2].Pos).magnitude;
-            // startAngle = Vector2.SignedAngle()
         }
     }
 
@@ -90,9 +86,6 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 CenterDelta = eventData.delta / 2
             });
         }
-
-        // swipe
-        // pinch
     }
 
     public void OnEndDrag(PointerEventData eventData)

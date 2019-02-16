@@ -11,11 +11,6 @@ public class CameraZoomController : MonoBehaviour
     [Inject]
     IModelLoader loader;
 
-    void Awake()
-    {
-
-    }
-
     public void Adjust(ModelEntry entry)
     {
         var meshFilters = loader.LoadedObject.GetComponentsInChildren<MeshFilter>();

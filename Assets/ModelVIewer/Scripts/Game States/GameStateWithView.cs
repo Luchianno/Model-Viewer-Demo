@@ -8,7 +8,7 @@ public class GameStateWithView : GameState
 
     public override void Initialize()
     {
-        Debug.Log($"Init {this.GetType()}");
+        // Debug.Log($"Init {this.GetType()}");
         uiView.DisableView();
     }
 
