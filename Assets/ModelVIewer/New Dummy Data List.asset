@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7182405e3cd62f24890404295ef44e36, type: 3}
+  m_Name: New Dummy Data List
+  m_EditorClassIdentifier: 
+  items:
+  - Name: Streaming Assets 1 (Local)
+    Path: man2
+    Location: 0
+  - Name: Remote 1 (Lamp)
+    Path: http://wolf3d.io/assignment/lamp.obj
+    Location: 2
+  - Name: Remote 2 (Man1)
+    Path: http://wolf3d.io/assignment/man1.obj
+    Location: 2
+  - Name: Remote 3 (Man2)
+    Path: http://wolf3d.io/assignment/man1.obj
+    Location: 2
+  - Name: Remote Fail Test 1
+    Path: http://wolf3d.io/assignment/ELEPHANT.obj
+    Location: 2
+  - Name: Remote Fail Test 2
+    Path: asdasadasdsd
+    Location: 0
+  - Name: Streaming Assets Fail 1 (Local)
+    Path: kurat.obj
+    Location: 0
