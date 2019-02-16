@@ -24,7 +24,6 @@ public class GameStateMachine : IInitializable, ITickable
             currentState.Update();
     }
 
-
     public void ChangeState<T, V>(V args) where T : GameState  // just extra check during compile time, not to fuck up
     {
         Debug.Log($"Changing to state: {typeof(T)}");

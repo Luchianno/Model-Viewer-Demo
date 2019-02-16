@@ -14,6 +14,12 @@ public class ErrorMessageView : BasicView
     [SerializeField]
     Button back;
 
+    [SerializeField]
+    TextMeshProUGUI titleLabel;
+    [SerializeField]
+    TextMeshProUGUI errorLabel;
+
+
     public UnityEvent OnBackClicked;
 
     protected void Awake()
@@ -22,8 +28,9 @@ public class ErrorMessageView : BasicView
         back.onClick.AddListener(OnBackClicked.Invoke);
     }
 
-    public void UpdateView()
+    public void UpdateView(ModelEntry model, string error)
     {
-
+        titleLabel.text = model.Name;
+        titleLabel.text = error;
     }
 }

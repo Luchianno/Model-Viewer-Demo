@@ -30,7 +30,7 @@ public class ExtendedCanvasGroup : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Debug.Log(this.gameObject.name);
+        // Debug.Log(this.gameObject.name);
         group = GetComponent<CanvasGroup>();
         if (renderingEnabled)
             turnOn();

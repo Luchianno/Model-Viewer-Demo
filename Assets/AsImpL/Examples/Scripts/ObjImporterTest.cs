@@ -70,7 +70,7 @@ namespace AsImpL
                     }
                     options.reuseLoaded = reuseLoaded;
                     options.inheritLayer = inheritLayer;
-                    ImportModelAsync(objName, filePath, transform, options);
+                    ImportModelAsync(objName, filePath, transform, options, out string error);
                 }
             }
 

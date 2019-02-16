@@ -4,40 +4,46 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.Events;
 
 public class PreviewScreenView : BasicView
 {
+    public UnityEvent backClicked;
+    public UnityEvent resetClicked;
+    public UnityEventInt toggleChanged;
+
     [SerializeField]
     List<Toggle> toggles;
     [SerializeField]
-    MeshFilter meshFilter;
-    [SerializeField]
-    MeshRenderer meshRenderer;
-    [SerializeField]
     TextMeshProUGUI infoLabel;
     [SerializeField]
-    List<Material> materials;
+    Button back;
+    [SerializeField]
+    Button reset;
+    // [SerializeField]
+    // Button info;
+
+    // [SerializeField]
+    // ExtendedCanvasGroup infoBox;
+
+    void Awake()
+    {
+        back.onClick.AddListener(backClicked.Invoke);
+        reset.onClick.AddListener(resetClicked.Invoke);
+    }
 
     void OnToggleChange()
     {
         for (int i = 0; i < toggles.Count; i++)
         {
-            toggles[i].onValueChanged.AddListener(x =>
-            {
-                if (x)
-                    ChangeMaterial(materials[i]);
-            });
+            toggles[i].onValueChanged.AddListener(x => toggleChanged.Invoke(i));
         }
     }
 
-    public void ChangeMaterial(Material material)
-    {
-        this.meshRenderer.material = material;
-    }
+    public void SetInfo(string info) => infoLabel.text = info;
 
-    public void ChangeMesh(Mesh mesh)
+    public void ChangeMesh(int vertices, int polygons)
     {
-        this.meshFilter.mesh = mesh;
-        infoLabel.text = $"Vertices: {mesh.vertexCount}\nTriangles: {mesh.triangles.Length / 3}";
+        infoLabel.text = $"Vertices: {vertices:N1}\nPolygons: {polygons:N1}";
     }
 }

@@ -8,8 +8,8 @@ public class PreviewTransformController : MonoBehaviour
     [Inject]
     DragArea dragArea;
 
-    [Inject(Id = "PreviewObject")]
-    Transform target;
+    [Inject]
+    IModelLoader loader;
 
     public int SwipeAmount = 1;
     public float MinZoom = 0.2f;
@@ -28,24 +28,26 @@ public class PreviewTransformController : MonoBehaviour
 
     void PinchChanged(DragArea.PinchInfo pinch)
     {
-        target.localScale = currentScale * pinch.Amount;
-        var clampedZoom = Mathf.Clamp(target.localScale.x, MinZoom, MaxZoom);
-        target.localScale = Vector3.one * clampedZoom;
+        loader.LoadedObject.transform.localScale = currentScale * pinch.Amount;
+        var clampedZoom = Mathf.Clamp(loader.LoadedObject.transform.localScale.x, MinZoom, MaxZoom);
+        loader.LoadedObject.transform.localScale = Vector3.one * clampedZoom;
     }
 
     void PinchEnded()
     {
-        var clampedZoom = Mathf.Clamp(target.localScale.x, MinZoom, MaxZoom);
-        target.localScale = Vector3.one * clampedZoom;
-        currentScale = target.localScale;
+        var clampedZoom = Mathf.Clamp(loader.LoadedObject.transform.localScale.x, MinZoom, MaxZoom);
+        loader.LoadedObject.transform.localScale = Vector3.one * clampedZoom;
+        currentScale = loader.LoadedObject.transform.localScale;
     }
 
 
-    void SwipeChanged(Vector2 change)
+    void SwipeChanged(DragArea.SwipeInfo change)
     {
-        var x = change.y / SwipeAmount;
-        var y = -change.x / SwipeAmount;
-        // target.rotation.SetEulerRotation();
-        target.Rotate(x, y, 0, Space.World);
+        var x = change.Delta.y / SwipeAmount;
+        var y = -change.Delta.x / SwipeAmount;
+        // loader.LoadedObject.transform.rotation.SetEulerRotation();
+        loader.LoadedObject.transform.Rotate(x, y, 0, Space.World);
+
+        // loader.LoadedObject.transform.Rotate(x, y, 0, Space.World);
     }
 }

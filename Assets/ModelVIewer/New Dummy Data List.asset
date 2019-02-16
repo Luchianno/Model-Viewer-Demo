@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - Name: Streaming Assets 1 (Local)
-    Path: man2
+    Path: man2.obj
     Location: 0
   - Name: Remote 1 (Lamp)
     Path: http://wolf3d.io/assignment/lamp.obj
@@ -25,12 +25,3 @@ MonoBehaviour:
   - Name: Remote 3 (Man2)
     Path: http://wolf3d.io/assignment/man1.obj
     Location: 2
-  - Name: Remote Fail Test 1
-    Path: http://wolf3d.io/assignment/ELEPHANT.obj
-    Location: 2
-  - Name: Remote Fail Test 2
-    Path: asdasadasdsd
-    Location: 0
-  - Name: Streaming Assets Fail 1 (Local)
-    Path: kurat.obj
-    Location: 0

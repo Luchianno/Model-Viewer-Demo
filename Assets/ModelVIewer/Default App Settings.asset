@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default App Settings
   m_EditorClassIdentifier: 
   LocalIcon: {fileID: 21300000, guid: 79918c92a378cde42a007082cfc767b2, type: 3}
-  RemoteIcon: {fileID: 21300000, guid: 76600ab0b4bd9ba4ca2ae140c0386e24, type: 3}
+  RemoteIcon: {fileID: 21300000, guid: 924f5ea40f5c9ab47b64cdbe5167b639, type: 3}
   DownloadedIcon: {fileID: 21300000, guid: 76600ab0b4bd9ba4ca2ae140c0386e24, type: 3}
   RefreshIcon: {fileID: 21300000, guid: 4bbbe5cda5facc04ab585d0a821517cc, type: 3}
   SettingsIcon: {fileID: 21300000, guid: 94668b7bee992e543b7102263492ff49, type: 3}

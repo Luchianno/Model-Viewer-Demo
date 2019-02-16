@@ -175,7 +175,7 @@ namespace AsImpL
         /// TODO: refactor this method, it is too long.
         private IEnumerator ImportFileAsync(string absolutePath, Transform parentObject)
         {
-            Loader loader = CreateLoader(absolutePath);
+            Loader loader = CreateLoader(absolutePath, out string error);
             if (loader == null)
             {
                 yield break;
@@ -324,12 +324,13 @@ namespace AsImpL
         /// </summary>
         /// <param name="absolutePath">path of the model to be imported</param>
         /// <returns>A proper loader or null if not available.</returns>
-        private Loader CreateLoader(string absolutePath)
+        private Loader CreateLoader(string absolutePath, out string error)
         {
             string ext = Path.GetExtension(absolutePath);
             if (string.IsNullOrEmpty(ext))
             {
                 Debug.LogError("No extension defined, unable to detect file format");
+                error = "No extension defined, unable to detect file format";
                 return null;
             }
             Loader loader = null;
@@ -340,6 +341,7 @@ namespace AsImpL
                 {
                     // TODO: other formats supported? Remark: often there are zip and rar archives without extension.
                     Debug.LogError("Unable to detect file format in " + ext);
+                    error = "Unable to detect file format in " + ext;
                     return null;
                 }
                 loader = gameObject.AddComponent<LoaderObj>();
@@ -354,6 +356,7 @@ namespace AsImpL
                     // TODO: add mode formats here...
                     default:
                         Debug.LogErrorFormat("File format not supported ({0})", ext);
+                        error = $"File format not supported ({ext})";
                         return null;
                 }
             }
@@ -361,6 +364,7 @@ namespace AsImpL
             loader.ModelLoaded += OnImported;
             loader.ModelError += OnImportError;
 
+            error = "";
             return loader;
         }
 
@@ -371,7 +375,7 @@ namespace AsImpL
         /// <param name="filePath"></param>
         /// <param name="parentObj"></param>
         /// <param name="options"></param>
-        public void ImportModelAsync(string objName, string filePath, Transform parentObj, ImportOptions options)
+        public bool ImportModelAsync(string objName, string filePath, Transform parentObj, ImportOptions options, out string error)
         {
             if (loaderList == null)
             {
@@ -387,10 +391,10 @@ namespace AsImpL
             }
             string absolutePath = filePath.Contains("//") ? filePath : Path.GetFullPath(filePath);
             absolutePath = absolutePath.Replace('\\', '/');
-            Loader loader = CreateLoader(absolutePath);
+            Loader loader = CreateLoader(absolutePath, out error);
             if (loader == null)
             {
-                return;
+                return false;
             }
             numTotalImports++;
             loaderList.Add(loader);
@@ -401,6 +405,8 @@ namespace AsImpL
             }
             allLoaded = false;
             StartCoroutine(loader.Load(objName, absolutePath, parentObj));
+            error = "";
+            return true;
         }
 
         /// <summary>

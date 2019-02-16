@@ -23,7 +23,7 @@ namespace AsImpL
 
             private void Start()
             {
-                objImporter.ImportModelAsync("MyObject", filePath, null, importOptions);
+                objImporter.ImportModelAsync("MyObject", filePath, null, importOptions, out string error);
             }
         }
     }

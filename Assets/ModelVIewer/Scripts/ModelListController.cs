@@ -42,7 +42,7 @@ public class ModelListController : IInitializable, IDisposable
 
     public void ModelSelected(ModelEntry entry)
     {
-        sm.ChangeState<PreviewGameState, ModelEntry>(entry);
+        sm.ChangeState<LoadingGameState, ModelEntry>(entry);
     }
 
     public void LoadFromPersistantPath()

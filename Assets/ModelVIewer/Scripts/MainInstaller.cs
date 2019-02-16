@@ -30,6 +30,7 @@ public class MainInstaller : MonoInstaller
         // define game states here. simple.
         Container.Bind(typeof(IInitializable), typeof(GameState)).To<ListGameState>().AsSingle();
         Container.Bind(typeof(IInitializable), typeof(GameState)).To<PreviewGameState>().AsSingle();
+        Container.Bind(typeof(IInitializable), typeof(GameState)).To<LoadingGameState>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
 
@@ -37,7 +38,7 @@ public class MainInstaller : MonoInstaller
         Container.BindInstance<Transform>(previewObject).WithId("PreviewObject");
 
         // OBJ importer
-        Container.Bind<ObjectImporter>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<IModelLoader>().To<ModelLoader>().FromComponentInHierarchy().AsSingle();
 
         // Model List Providers
         //
@@ -50,11 +51,15 @@ public class MainInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<DebugView>().FromComponentInHierarchy(true).AsSingle();
         Container.BindInterfacesAndSelfTo<ModelListView>().FromComponentInHierarchy(true).AsSingle();
         Container.BindInterfacesAndSelfTo<PreviewScreenView>().FromComponentInHierarchy(true).AsSingle();
+        Container.BindInterfacesAndSelfTo<ProgressMessageView>().FromComponentInHierarchy(true).AsSingle();
+        Container.BindInterfacesAndSelfTo<ErrorMessageView>().FromComponentInHierarchy(true).AsSingle();
+
         Container.BindFactory<ModelListItemView, ModelListItemView.Factory>().
                     FromComponentInNewPrefab(modeListItemPrefab).
                     UnderTransform(x => FindObjectOfType<ModelListView>().listParent); // if anyone wonders wtf is happening here: https://github.com/modesttree/Zenject/blob/master/Documentation/Factories.md
 
         // controllers
         Container.BindInterfacesAndSelfTo<ModelListController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<CameraZoomController>().FromComponentInHierarchy(true).AsSingle();
     }
 }

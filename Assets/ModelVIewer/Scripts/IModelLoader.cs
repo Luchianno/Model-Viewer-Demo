@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IModelLoader
 {
-    void StartLoadingModel(ModelEntry model);
+    // float Progress { get; }
+    UnityEvent ImportingComplete { get; }
+    UnityEventString ImportError { get; }
+    GameObject LoadedObject { get; }
 
-    float Progress { get; }
+    void StartLoadingModel(ModelEntry model);
 }

@@ -13,8 +13,8 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public float Pinch { get; protected set; }
     public Vector2 Swipe { get; protected set; }
 
-    public PinchEventArgs OnPinchChanged;
-    public UnityEventVector2 OnSwipeChanged;
+    public PinchEvent OnPinchChanged;
+    public SwipeEvent OnSwipeChanged;
     public UnityEvent OnPinchEnded;
     public UnityEvent OnSwipeEnded;
 
@@ -53,7 +53,7 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (pressStart.Count == 1)
         {
             Swipe = eventData.position - pressStart[0].Pos;
-            OnSwipeChanged.Invoke(Swipe);
+            OnSwipeChanged.Invoke(new SwipeInfo() { Amount = Swipe, Delta = eventData.delta });
         }
         // pinch
         else if (pressStart.Count > 1)
@@ -123,19 +123,17 @@ public class DragArea : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         public float AngleDelta;
     }
 
-    [Serializable]
-    public class PinchEventArgs : UnityEvent<PinchInfo> { }
+    public struct SwipeInfo
+    {
+        public Vector2 Amount;
+        public Vector2 Delta;
+    }
 
-    // public void OnEndDrag(PointerEventData eventData)
-    // {
-    // Debug.Log("OnEndDrag called.");
-    // var temp = eventData.position - startPos;
-    // if (temp.x >= Screen.width / 6)
-    //     OnSwipeRight.Invoke();
-    // if (temp.x <= -Screen.width / 6)
-    //     OnSwipeLeft.Invoke();
-    // DebugLabel.text = String.Format("{0} {1} X: {2}; Y:{3}", temp.x, temp.y, Screen.width, Screen.height);
-    // }
+    [Serializable]
+    public class PinchEvent : UnityEvent<PinchInfo> { }
+
+    [Serializable]
+    public class SwipeEvent : UnityEvent<SwipeInfo> { }
 
 
 }
