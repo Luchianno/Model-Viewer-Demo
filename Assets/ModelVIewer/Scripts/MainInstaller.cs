@@ -31,6 +31,7 @@ public class MainInstaller : MonoInstaller
         Container.Bind(typeof(IInitializable), typeof(GameState)).To<ListGameState>().AsSingle();
         Container.Bind(typeof(IInitializable), typeof(GameState)).To<PreviewGameState>().AsSingle();
         Container.Bind(typeof(IInitializable), typeof(GameState)).To<LoadingGameState>().AsSingle();
+        Container.Bind(typeof(IInitializable), typeof(GameState)).To<ErrorGameState>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
 
@@ -61,5 +62,7 @@ public class MainInstaller : MonoInstaller
         // controllers
         Container.BindInterfacesAndSelfTo<ModelListController>().AsSingle();
         Container.BindInterfacesAndSelfTo<CameraZoomController>().FromComponentInHierarchy(true).AsSingle();
+        Container.BindInterfacesAndSelfTo<MaterialController>().AsSingle();
+        
     }
 }

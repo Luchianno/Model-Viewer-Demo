@@ -28,7 +28,7 @@ public class CameraZoomController : MonoBehaviour
         }
         Debug.Log(size);
         var distance = size * 0.5f / Mathf.Tan(camera.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        Debug.Log(distance);
+        // Debug.Log(distance);
         this.camera.transform.position = new Vector3(0, size, -distance - 5);
     }
 }

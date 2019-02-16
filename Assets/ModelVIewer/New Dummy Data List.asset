@@ -25,3 +25,9 @@ MonoBehaviour:
   - Name: Remote 3 (Man2)
     Path: http://wolf3d.io/assignment/man1.obj
     Location: 2
+  - Name: Incorrect remote path
+    Path: dasaddada
+    Location: 2
+  - Name: Incorrect local path
+    Path: kurat
+    Location: 2

@@ -31,6 +31,6 @@ public class ErrorMessageView : BasicView
     public void UpdateView(ModelEntry model, string error)
     {
         titleLabel.text = model.Name;
-        titleLabel.text = error;
+        errorLabel.text = error;
     }
 }

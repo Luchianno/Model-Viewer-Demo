@@ -12,15 +12,22 @@ public class PreviewGameState : GameStateWithView
 
     IModelLoader loader;
 
+    MaterialController materialController;
+
     [Inject]
-    public void Init(PreviewScreenView view, CameraZoomController zoomController, GameStateMachine sm, IModelLoader loader)
+    public void Init(PreviewScreenView view,
+                    CameraZoomController zoomController,
+                    GameStateMachine sm,
+                    IModelLoader loader,
+                    MaterialController materialController)
     {
         this.uiView = view;
         this.sm = sm;
         this.zoomController = zoomController;
         this.loader = loader;
+        this.materialController = materialController;
 
-        view.backClicked.AddListener(() => sm.ChangeState<ListGameState>());
+        view.BackClicked.AddListener(() => sm.ChangeState<ListGameState>());
     }
 
     public override void OnEnter<T>(T args)
@@ -41,6 +48,7 @@ public class PreviewGameState : GameStateWithView
         }
 
         view.ChangeMesh(vertices, polygons);
+        materialController.AddShaders();
 
         base.OnEnter(args);
     }

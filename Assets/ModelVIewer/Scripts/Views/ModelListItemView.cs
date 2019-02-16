@@ -35,7 +35,7 @@ public class ModelListItemView : MonoBehaviour
     public void UpdateView(ModelEntry item)
     {
         nameLabel.text = item.Name;
-        pathLabel.text = item.Path;
+        pathLabel.text = $"Path: {item.Path}";
         switch (item.Location)
         {
             case ModelEntry.ResourceLocation.StreamingAsset:

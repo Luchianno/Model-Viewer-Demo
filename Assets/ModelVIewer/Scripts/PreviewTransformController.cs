@@ -27,7 +27,7 @@ public class PreviewTransformController : MonoBehaviour
         dragArea.OnSwipeChanged.AddListener(SwipeChanged);
         dragArea.OnPinchChanged.AddListener(PinchChanged);
         dragArea.OnPinchEnded.AddListener(PinchEnded);
-        view.resetClicked.AddListener(ResetClicked);
+        view.ResetClicked.AddListener(ResetClicked);
         // dragArea.OnPinchEnded.AddListener(() => currentScale = target.localScale);
     }
 
